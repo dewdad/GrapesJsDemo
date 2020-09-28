@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrapesJS Demo</title>
+    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/grapesjs@0.14.49/dist/grapes.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src="js/toastr.min.js"></script>
+    <script src="js/grapes.min.js?v0.16.22"></script>
+    <script src="js/grapesjs-preset-webpage.min.js?v0.1.11"></script>
+    <script src="js/grapesjs-lory-slider.min.js?0.1.5"></script>
+    <script src="js/grapesjs-tabs.min.js?0.1.1"></script>
+    <script src="js/grapesjs-custom-code.min.js?0.1.2"></script>
+    <script src="js/grapesjs-touch.min.js?0.1.1"></script>
+    <script src="js/grapesjs-parser-postcss.min.js?0.1.1"></script>
+    <script src="js/grapesjs-tooltip.min.js?0.1.1"></script>
+    <script src="js/grapesjs-tui-image-editor.min.js?0.1.2"></script>
+    <script src="js/grapesjs-typed.min.js?1.0.5"></script>
+    <script src="js/grapesjs-style-bg.min.js?1.0.1"></script>
+    <link rel="stylesheet" href="stylesheets/toastr.min.css">
+    <link rel="stylesheet" href="stylesheets/grapes.min.css?v0.16.22">
+    <link rel="stylesheet" href="stylesheets/grapesjs-preset-webpage.min.css">
+    <link rel="stylesheet" href="stylesheets/tooltip.css">
+    <link rel="stylesheet" href="stylesheets/grapesjs-plugin-filestack.css">
+    <link rel="stylesheet" href="stylesheets/demos.css?v3">
+    <link href="https://unpkg.com/grapick/dist/grapick.min.css" rel="stylesheet">
+    <style type="text/css">
+        .icon-add-comp::before, .icon-comp100::before,.icon-comp50::before,.icon-comp30::before,.icon-rm::before{ content: '';}
+        .icon-add-comp {
+          background: url("./img/icon-sq-a.png") no-repeat center;
+        }
+        .icon-comp100 {
+          background: url("./img/icon-sq-1.png") no-repeat center;
+        }
+        .icon-comp50 {
+          background: url("./img/icon-sq-2.png") no-repeat center;
+        }
+        .icon-comp30 {
+          background: url("./img/icon-sq-3.png") no-repeat center;
+        }
+        .icon-rm {
+          background: url("./img/icon-sq-r.png") no-repeat center;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <div id="gjs" style="height:0px; overflow:hidden">
+        <header class="header-banner">
+            <div class="container-width">
+                <div class="logo-container">
+                    <div class="logo">GrapesJS</div>
+                </div>
+                <nav class="menu">
+                    <div class="menu-item">BUILDER</div>
+                    <div class="menu-item">TEMPLATE</div>
+                    <div class="menu-item">WEB</div>
+                </nav>
+                <div class="clearfix"></div>
+                <div class="lead-title">Build your templates without coding</div>
+                <div class="sub-lead-title">All text blocks could be edited easily with double clicking on it. You can
+                    create new text blocks with the command from the left panel</div>
+                <div class="lead-btn">Hover me</div>
+            </div>
+        </header>
+    </div>
+
+    <style>
+        .header-banner{
+          padding-top: 35px;
+          padding-bottom: 100px;
+          color: #ffffff;
+          font-family: Helvetica, serif;
+          font-weight: 100;
+          background-image:url("//grapesjs.com/img/bg-gr-v.png"), url("//grapesjs.com/img/work-desk.jpg");
+          background-attachment:scroll, scroll;
+          background-position:left top, center center;
+          background-repeat:repeat-y, no-repeat;
+          background-size: contain, cover;
+        }
+        .container-width{
+          width: 90%;
+          max-width: 1150px;
+          margin: 0 auto;
+        }
+        .logo-container{
+          float: left;
+          width: 50%;
+        }
+        .logo{
+          background-color: #fff;
+          border-radius: 5px;
+          width: 130px;
+          padding: 10px;
+          min-height: 30px;
+          text-align: center;
+          line-height: 30px;
+          color: #4d114f;
+          font-size: 23px;
+        }
+        .menu {
+          float: right;
+          width: 50%;
+        }
+        .menu-item{
+          float:right;
+          font-size: 15px;
+          color:#eee;
+          width: 130px;
+          padding: 10px;
+          min-height: 50px;
+          text-align: center;
+          line-height: 30px;
+          font-weight: 400;
+        }
+        .lead-title{
+          margin: 150px 0 30px 0;
+          font-size: 40px;
+        }
+        .sub-lead-title{
+          max-width: 650px;
+          line-height:30px;
+          margin-bottom:30px;
+          color: #c6c6c6;
+        }
+        .lead-btn{
+          margin-top: 15px;
+          padding:10px;
+          width:190px;
+          min-height:30px;
+          font-size:20px;
+          text-align:center;
+          letter-spacing:3px;
+          line-height:30px;
+          background-color:#d983a6;
+          border-radius:5px;
+          transition: all 0.5s ease;
+          cursor: pointer;
+        }
+        .lead-btn:hover{
+          background-color:#ffffff;
+          color:#4c114e;
+        }
+        .lead-btn:active{
+          background-color:#4d114f;
+          color:#fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var editor = grapesjs.init({
+            container: '#gjs',
+            fromElement: true,
+            height: '100%',
+            width: 'auto',
+            storageManager: {
+                id: 'gjs-', // Prefix identifier that will be used inside storing and loading
+                type: 'local', // Type of the storage
+                autosave: true, // Store data automatically
+                autoload: true, // Autoload stored data on init
+                stepsBeforeSave: 1, // If autosave enabled, indicates how many changes are necessary before store method is triggered
+                storeComponents: true, // Enable/Disable storing of components in JSON format
+                storeStyles: true, // Enable/Disable storing of rules in JSON format
+                storeHtml: true, // Enable/Disable storing of components as HTML string
+                storeCss: true, // Enable/Disable storing of rules as CSS string
+            },
+            plugins: [
+                'grapesjs-lory-slider',
+                'grapesjs-tabs',
+                'grapesjs-custom-code',
+                'grapesjs-touch',
+                'grapesjs-parser-postcss',
+                'grapesjs-tooltip',
+                'grapesjs-tui-image-editor',
+                'grapesjs-style-bg',
+                'gjs-preset-webpage',
+            ],
+            pluginsOpts: {
+                'grapesjs-lory-slider': {
+                    sliderBlock: {
+                        category: 'Extra'
+                    }
+                },
+                'grapesjs-tabs': {
+                    tabsBlock: {
+                        category: 'Extra'
+                    }
+                },
+                'gjs-preset-webpage': {
+                    modalImportTitle: 'Import Template',
+                    modalImportLabel: '<div style="margin-bottom: 10px; font-size: 13px;">Paste here your HTML/CSS and click Import</div>',
+                    modalImportContent: function (editor) {
+                        return editor.getHtml() + '<style>' + editor.getCss() + '</style>'
+                    },
+                    //filestackOpts: null,
+                    aviaryOpts: false,
+                    blocksBasicOpts: {
+                        flexGrid: 1
+                    },
+                    customStyleManager: [{
+                        name: 'General',
+                        buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom'],
+                        properties: [{
+                                name: 'Alignment',
+                                property: 'float',
+                                type: 'radio',
+                                defaults: 'none',
+                                list: [{
+                                        value: 'none',
+                                        className: 'fa fa-times'
+                                    },
+                                    {
+                                        value: 'left',
+                                        className: 'fa fa-align-left'
+                                    },
+                                    {
+                                        value: 'right',
+                                        className: 'fa fa-align-right'
+                                    }
+                                ],
+                            },
+                            {
+                                property: 'position',
+                                type: 'select'
+                            }
+                        ],
+                    }, {
+                        name: 'Dimension',
+                        open: false,
+                        buildProps: ['margin', 'padding'],
+                        properties: [{
+                            property: 'margin',
+                            properties: [{
+                                    name: 'Top',
+                                    property: 'margin-top'
+                                },
+                                {
+                                    name: 'Right',
+                                    property: 'margin-right'
+                                },
+                                {
+                                    name: 'Bottom',
+                                    property: 'margin-bottom'
+                                },
+                                {
+                                    name: 'Left',
+                                    property: 'margin-left'
+                                }
+                            ],
+                        }, {
+                            property: 'padding',
+                            properties: [{
+                                    name: 'Top',
+                                    property: 'padding-top'
+                                },
+                                {
+                                    name: 'Right',
+                                    property: 'padding-right'
+                                },
+                                {
+                                    name: 'Bottom',
+                                    property: 'padding-bottom'
+                                },
+                                {
+                                    name: 'Left',
+                                    property: 'padding-left'
+                                }
+                            ],
+                        }],
+                    }, {
+                        name: 'Typography',
+                        open: false,
+                        buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing',
+                            'color', 'line-height', 'text-align', 'text-decoration'
+                        ],
+                        properties: [{
+                                name: 'Font',
+                                property: 'font-family'
+                            },
+                            {
+                                name: 'Weight',
+                                property: 'font-weight'
+                            },
+                            {
+                                name: 'Font color',
+                                property: 'color'
+                            },
+                            {
+                                property: 'text-align',
+                                type: 'radio',
+                                defaults: 'left',
+                                list: [{
+                                        value: 'left',
+                                        name: 'Left',
+                                        className: 'fa fa-align-left'
+                                    },
+                                    {
+                                        value: 'center',
+                                        name: 'Center',
+                                        className: 'fa fa-align-center'
+                                    },
+                                    {
+                                        value: 'right',
+                                        name: 'Right',
+                                        className: 'fa fa-align-right'
+                                    },
+                                    {
+                                        value: 'justify',
+                                        name: 'Justify',
+                                        className: 'fa fa-align-justify'
+                                    }
+                                ],
+                            }, {
+                                property: 'text-decoration',
+                                type: 'radio',
+                                defaults: 'none',
+                                list: [{
+                                        value: 'none',
+                                        name: 'None',
+                                        className: 'fa fa-times'
+                                    },
+                                    {
+                                        value: 'underline',
+                                        name: 'underline',
+                                        className: 'fa fa-underline'
+                                    },
+                                    {
+                                        value: 'line-through',
+                                        name: 'Line-through',
+                                        className: 'fa fa-strikethrough'
+                                    }
+                                ],
+                            }
+                        ],
+                    }, {
+                        name: 'Decorations',
+                        open: false,
+                        buildProps: ['opacity', 'border-radius', 'border'],
+                        properties: [{
+                            type: 'slider',
+                            property: 'opacity',
+                            defaults: 1,
+                            step: 0.01,
+                            max: 1,
+                            min: 0,
+                        }, {
+                            property: 'border-radius',
+                            properties: [{
+                                    name: 'Top',
+                                    property: 'border-top-left-radius'
+                                },
+                                {
+                                    name: 'Right',
+                                    property: 'border-top-right-radius'
+                                },
+                                {
+                                    name: 'Bottom',
+                                    property: 'border-bottom-left-radius'
+                                },
+                                {
+                                    name: 'Left',
+                                    property: 'border-bottom-right-radius'
+                                }
+                            ],
+                        } ],
+                    }],
+                },
+            }
+        });
+        window.editor = editor;
+    </script>
+
+</body>
+
+</html>
